@@ -10,14 +10,14 @@ import subprocess
 import threading
 
 def processar_relatorio():
-    """Função que processa o relatório"""
+    """Função que processa o relatório TCLD"""
     # Abrir diálogo para selecionar arquivo
     root = tk.Tk()
     root.withdraw()  # Esconde a janela principal
     root.attributes('-topmost', True)  # Coloca sempre na frente
     
     arquivo_entrada = filedialog.askopenfilename(
-        title="Selecione o arquivo RELATORIO.xlsx",
+        title="Selecione o arquivo RELATORIO.xlsx (TCLD)",
         filetypes=[("Excel files", "*.xlsx"), ("All files", "*.*")],
         initialdir=os.path.expanduser("~\\Desktop")
     )
@@ -33,7 +33,7 @@ def processar_relatorio():
         root.destroy()
         return
     
-    arquivo_saida = os.path.join(os.path.dirname(arquivo_entrada), 'INSPECAO_SEMANAL.xlsx')
+    arquivo_saida = os.path.join(os.path.dirname(arquivo_entrada), 'INSPECAO_SEMANAL_TCLD.xlsx')
     
     try:
         # 1. Ler o arquivo Excel usando pandas
@@ -56,14 +56,15 @@ def processar_relatorio():
         # 2. Extrair automaticamente a CORREIA com regex (formato: G02-02CV002-... ou 02CV002-...)
         df['Correia'] = df['Descrição'].str.extract(r'([\dA-Z]+CV\d+)', expand=False).str.strip()
         
-        # Definir os sistemas e suas correias
+        # Definir os sistemas TCLD e suas correias
         sistemas = {
-            'FAZENDÃO': ['11CV56', '11LK02', '11LL01', '11LL03'],
-            'ALEGRIA SUL 02': ['11CV68', '11CV67', '11CR05', '02CV09', '11CR19', '11LL07', '11LL09', '11CR14', '11CV07', '11CV69', '11LK03'],
-            'ALEGRIA CENTRO': ['11CV21', '02CV37', '02CV38', '02CV39', '02CV40', '02CV41', '11CR13'],
-            'ALEGRIA CENTRO 64': ['11CV20', '11CV64', '11LK01', '11LL04', '11CV60', '11LL06'],
-            'ALEGRIA 345': ['11CV23', '11CV24', '11CR10'],
-            'ALEGRIA SUL 01': ['11CV72', '02CV02', '11CR12']
+            'TCLD DA 3 BRITAGEM': ['02CV011', '02CV012', '03CV014', '03CV015', '03CV016', '03CV017', '03CV018', '03CV019', '03CV020', '03CV021', '03CV022', '03CV023', '03CV024', '05CV025'],
+            'TCLD NORTE': ['02CV001', '02CV006', '02CV007', '02CV008'],
+            'PILHA NORTE': ['11CV025'],
+            'FAZENDÃO': ['11CV057', '11CV058'],
+            'PILHA CENTRO': ['02CV042'],
+            'TCLD SUL': ['02CV010'],
+            'USINA 3': ['05CV026', '05CV027', '05CV028', '09CV030']
         }
         
         # Criar dicionário correia -> sistema
@@ -96,7 +97,7 @@ def processar_relatorio():
         # 9. e 10. Gerar novo arquivo Excel
         wb = Workbook()
         ws = wb.active
-        ws.title = "Inspeção Semanal"
+        ws.title = "Inspeção Semanal TCLD"
         
         center_alignment = Alignment(horizontal='center', vertical='center')
         date_style = NamedStyle(name='date_style', number_format='DD/MM/YYYY')
