@@ -1,0 +1,46 @@
+╔════════════════════════════════════════════════════════════════╗
+║          GERADOR DE INSPEÇÃO SEMANAL - MODO DE USO             ║
+╚════════════════════════════════════════════════════════════════╝
+
+✅ O QUE FOI CRIADO:
+
+1️⃣  Gerador_Inspecao.bat
+   → Clique 2x para usar
+   → Selecione o arquivo relatorio.xlsx
+   → Gera INSPECAO_SEMANAL.xlsx automaticamente
+   → Abre o arquivo pronto para usar
+
+2️⃣  Gerador_Inspeção.exe (em breve!)
+   → Aplicativo standalone (sem necessidade de Python)
+   → Interface limpa e profissional
+   → Mesmo fazer: clique → selecione → pronto!
+
+
+🚀 COMO USAR (AGORA):
+
+1. Coloque o arquivo relatorio.xlsx em qualquer pasta
+2. Abra o Gerador_Inspecao.bat (2 cliques)
+3. Selecione o arquivo relatorio.xlsx
+4. Aguarde alguns segundos
+5. O INSPECAO_SEMANAL.xlsx será aberto automaticamente ✨
+
+
+💡 DICA: Coloque o .bat (ou .exe quando estiver pronto) na Área de 
+Trabalho para acesso rápido!
+
+
+❓ PROBLEMAS?
+
+Se aparecer erro, verifique:
+✓ Colunas necessárias no Excel:
+  - Descrição
+  - TextPrioridade
+  - Texto do item
+  - Nota
+  - Data de criação
+
+✓ O arquivo está em formato .xlsx (não .xls)
+
+✓ Não há linhas vazias ou dados inválidos
+
+═════════════════════════════════════════════════════════════════
