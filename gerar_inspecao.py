@@ -116,6 +116,44 @@ for (sistema, correia), group in grouped:
         ws.cell(row=current_row, column=3).value = row['Correia']
         ws.cell(row=current_row, column=3).alignment = center_alignment
 
+        # Fórmula para NÚMERO CAVALETE (coluna D)
+        ws.cell(row=current_row, column=4).value = f'=LEFT(B{current_row},FIND("-",B{current_row})-1)'
+        ws.cell(row=current_row, column=4).alignment = center_alignment
+
+        # Fórmula para TIPO DE ROLO (coluna E)
+        ws.cell(row=current_row, column=5).value = f'=MID(B{current_row},FIND("-",B{current_row})+1,FIND("-",B{current_row},FIND("-",B{current_row})+1)-FIND("-",B{current_row})-1)'
+        ws.cell(row=current_row, column=5).alignment = center_alignment
+
+        # Fórmula para posição D (coluna G)
+        ws.cell(row=current_row, column=7).value = f'=IF(ISERROR(FIND("-D-",B{current_row})),"","X")'
+        ws.cell(row=current_row, column=7).alignment = center_alignment
+
+        # Fórmula para posição C (coluna H)
+        ws.cell(row=current_row, column=8).value = f'=IF(ISERROR(FIND("-C-",B{current_row})),"","X")'
+        ws.cell(row=current_row, column=8).alignment = center_alignment
+
+        # Fórmula para posição E (coluna I)
+        ws.cell(row=current_row, column=9).value = f'=IF(ISERROR(FIND("-E-",B{current_row})),"","X")'
+        ws.cell(row=current_row, column=9).alignment = center_alignment
+
+        # Fórmula para P1 (coluna K)
+        ws.cell(row=current_row, column=11).value = f'=IF(ISERROR(FIND("P1",A{current_row})),"","X")'
+        ws.cell(row=current_row, column=11).alignment = center_alignment
+
+        # Fórmula para P2 (coluna L)
+        ws.cell(row=current_row, column=12).value = f'=IF(ISERROR(FIND("P2",A{current_row})),"","X")'
+        ws.cell(row=current_row, column=12).alignment = center_alignment
+
+        # Fórmula para P3 (coluna M)
+        ws.cell(row=current_row, column=13).value = f'=IF(ISERROR(FIND("P3",A{current_row})),"","X")'
+        ws.cell(row=current_row, column=13).alignment = center_alignment
+
+        # Fórmula para DANO (coluna N)
+        dano_formula = f'=IF(ISERROR(FIND("RO",B{current_row})),IF(ISERROR(FIND("CD",B{current_row})),IF(ISERROR(FIND("CG",B{current_row})),IF(ISERROR(FIND("AG",B{current_row})),IF(ISERROR(FIND("RT",B{current_row})),IF(ISERROR(FIND("RF",B{current_row})),IF(ISERROR(FIND("AM",B{current_row})),IF(ISERROR(FIND("RP",B{current_row})),"","ROLO FORA DE POSIÇÃO"),"ACUMULO DE MATERIAL"),"ROLO FALTANTE"),"ROLETE TRAVADO"),"DESGASTE NATURAL"),"CILINDRO GASTO"),"DEGOLADO"),"ROLAMENTO DANIFICADO")'
+        ws.cell(row=current_row, column=14).value = dano_formula
+        ws.cell(row=current_row, column=14).alignment = center_alignment
+
+        # Escrever Nota na coluna O
         ws.cell(row=current_row, column=15).value = row['Nota']
         ws.cell(row=current_row, column=15).alignment = center_alignment
 
