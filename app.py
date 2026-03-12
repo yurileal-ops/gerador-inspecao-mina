@@ -59,11 +59,11 @@ def processar_relatorio():
         # Definir os sistemas e suas correias
         sistemas = {
             'FAZENDÃO': ['11CV56', '11LK02', '11LL01', '11LL03'],
-            'ALEGRIA SUL 02': ['11CV68', '11CV67', '11CR05', '02CV09', '11CR19', '11LL07', '11LL09', '11CR14', '11CV07', '11CV69', '11LK03'],
+            'ALEGRIA SUL 02': ['11CV68', '11CV67', '11CR05', '02CV009', '11CR19', '11LL07', '11LL09', '11CR14', '11CV07', '11CV69', '11LK03'],
             'ALEGRIA CENTRO': ['11CV21', '02CV37', '02CV38', '02CV39', '02CV40', '02CV41', '11CR13'],
             'ALEGRIA CENTRO 64': ['11CV20', '11CV64', '11LK01', '11LL04', '11CV60', '11LL06'],
             'ALEGRIA 345': ['11CV23', '11CV24', '11CR10'],
-            'ALEGRIA SUL 01': ['11CV72', '02CV02', '11CR12']
+            'ALEGRIA SUL 01': ['11CV72', '02CV002', '11CR12']
         }
         
         # Criar dicionário correia -> sistema
