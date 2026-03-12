@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import pandas as pd
 from openpyxl import Workbook
-from openpyxl.styles import Alignment, NamedStyle
+from openpyxl.styles import Alignment, NamedStyle, PatternFill, Font
 from openpyxl.utils import get_column_letter
 import os
 import sys
@@ -102,6 +102,11 @@ def processar_relatorio():
         center_alignment = Alignment(horizontal='center', vertical='center')
         date_style = NamedStyle(name='date_style', number_format='DD/MM/YYYY')
         
+        # Cores para cabeçalhos de sistema
+        system_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+        system_font = Font(bold=True, color="FFFFFF", size=12)
+        system_alignment = Alignment(horizontal='left', vertical='center')
+        
         # Cabeçalhos
         ws['A1'] = 'PRIORIDADE'
         ws['B1'] = 'TEXTO DO ITEM'
@@ -113,8 +118,28 @@ def processar_relatorio():
             ws[f'{col}1'].alignment = center_alignment
         
         current_row = 2
+        current_system = None
         
         for (sistema, correia), group in grouped:
+            # Adicionar cabeçalho de sistema quando mudar de sistema
+            if sistema != current_system:
+                if current_system is not None:
+                    current_row += 1  # Linha em branco
+                
+                # Cabeçalho do sistema
+                ws.cell(row=current_row, column=1).value = f"🏭 {sistema}"
+                
+                # Mesclar células para o cabeçalho de sistema
+                ws.merge_cells(f'A{current_row}:P{current_row}')
+                
+                # Aplicar formatação
+                cell = ws.cell(row=current_row, column=1)
+                cell.fill = system_fill
+                cell.font = system_font
+                cell.alignment = system_alignment
+                
+                current_row += 1
+                current_system = sistema
             for _, row in group.iterrows():
                 ws.cell(row=current_row, column=1).value = row['TextPrioridade']
                 ws.cell(row=current_row, column=1).alignment = center_alignment
